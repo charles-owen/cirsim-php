@@ -183,11 +183,13 @@ class Cirsim {
      * @param string $appTag The application tag. Can be an assignment tag
      * @param string $name The name to use
      * @param boolean $save If true, the save option is included.
+     * @param boolean $singleAjaxLoad If true, load the single file using Ajax
      */
-    public function single($appTag, $name, $save = true) {
+    public function single($appTag, $name, $save = true, $singleAjaxLoad = true) {
         $this->appTag = $appTag;
         $this->name = $name;
         $this->save = $save;
+        $this->singleAjaxLoad = $singleAjaxLoad;
     }
 
     /**
@@ -297,14 +299,17 @@ class Cirsim {
                         'name'=>$this->name
                     ];
 
-                    // If the load path is set, this will load the file
-                    // using Ajax
-                    if($this->api->load !== null) {
-                        $data['api']['open'] = [
-                            'url'=> $this->api->load,
-                            'name'=>$this->name
-                        ];
+                    if($this->load === null && $this->singleAjaxLoad) {
+                        // If the load path is set, this will load the file
+                        // using Ajax
+                        if($this->api->load !== null) {
+                            $data['api']['open'] = [
+                                'url'=> $this->api->load,
+                                'name'=>$this->name
+                            ];
+                        }
                     }
+
                 }
 
             } else {
@@ -474,6 +479,7 @@ class Cirsim {
     private $answer = null;     // Any answer JSON
     private $staff = false;     // Is user a staff member?
     private $api;               // API features
+    private $singleAjaxLoad = true; // Should we load single file using Ajax?
 
     private $export = true;     // True enabled export/import of cirsim files
 }
