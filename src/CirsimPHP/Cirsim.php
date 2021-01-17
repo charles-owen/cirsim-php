@@ -319,6 +319,13 @@ class Cirsim {
                     'url'=> $this->api->load
                 ];
             }
+
+            if($this->api->test !== null && count($this->tests) > 0) {
+                $data['api']['test'] = [
+                    'url'=>$this->api->test,
+                    'name'=>$this->name !== null ? $this->name : 'test'
+                ];
+            }
         }
 
         if(count($this->tabs) > 0) {

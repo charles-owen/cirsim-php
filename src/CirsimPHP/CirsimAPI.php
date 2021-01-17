@@ -12,6 +12,7 @@ namespace CL\CirsimPHP;
  * @property string save API path for saving files
  * @property string load API path for loading files
  * @property string files API path for getting possible files
+ * @property string test API path for test results
  * @property boolean any true if any API paths are specified
  * @property array extra Array of extra properties to add to API calls
  */
@@ -37,8 +38,11 @@ class CirsimAPI {
             case 'files':
                 return $this->files;
 
+            case 'test':
+                return $this->test;
+
             case 'any':
-                return $this->save !== null || $this->load !== null;
+                return $this->save !== null || $this->load !== null || $this->test !== null;
 
             case 'extra':
                 return $this->extra;
@@ -81,6 +85,10 @@ class CirsimAPI {
                 $this->files = $value;
                 break;
 
+            case 'test':
+                $this->test = $value;
+                break;
+
             default:
                 $trace = debug_backtrace();
                 trigger_error(
@@ -99,5 +107,6 @@ class CirsimAPI {
     private $save = null;
     private $load = null;
     private $files = null;
+    private $test = null;
     private $extra = [];
 }
