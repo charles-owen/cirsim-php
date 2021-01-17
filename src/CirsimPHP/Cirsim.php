@@ -218,35 +218,9 @@ class Cirsim {
      * @return string
      */
     public function present($full = false, $class=null) {
-        $html = '';
-
-//        if(!$full) {
-//            $html .= '<div class="cl-cirsim-gap-before"></div>'
-//                . $this->view->exitBody();
-//        }
-//
-//        $site = $this->view->site;
-//        if($site->installed('users')) {
-//            $user = $site->users->user;
-//        } else {
-//            $user = null;
-//        }
-
-        $html .= $this->present_div($full, $class);
-
-//        if(!$full) {
-//            $html .= $this->view->reenterBody() .
-//                '<div class="cl-cirsim-gap-after"></div>';
-//        }
-
-        return $html;
+        return $this->present_div($full, $class);
     }
 
-    /**
-     *
-     * @param bool $full
-     * @return string
-     */
 
     /**
      * Present the cirsim div in a view.
