@@ -352,8 +352,10 @@ class Cirsim {
             $data['tests'] = $tests;
         }
 
-        if(strlen($class) > 0) {
+        if($class !== null && strlen($class) > 0) {
             $class = ' ' . $class;
+        } else {
+            $class = '';
         }
 
         $payload = htmlspecialchars(json_encode($data), ENT_NOQUOTES);
